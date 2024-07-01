@@ -1,32 +1,66 @@
 # 哈工大(深圳)校园网络登陆助手
 -- 用于无图形化界面的Linux服务器
 
-## 安装步骤
+## 依赖
 
-1.下载代码
->`git clone git@github.com:siliconx/hitsz_net.git`
+请自行安装 Python3 和 Firefox 浏览器. 下面将会叙述如何安装 Selenium 和 Firefox 驱动.
 
-2.安装selenium
->`pip3 install selenium`
+1. Python3
 
-3.下载并安装chrome浏览器(https://www.google.com/chrome/)
->`sudo dpkg -i google-chrome-xxx.deb`
+2. Firefox 浏览器
 
-4.下载并解压chrome驱动(https://npm.taobao.org/)
->`unzip chromedriver_linux64.zip`
->
->注意浏览器和驱动的版本应一致
+   需要浏览器所在路径在环境变量 PATH 中
 
-5.把chrome驱动移动到任一环境变量中的目录，如`/usr/local/bin`
->`sudo mv chromedriver /usr/local/bin`
+3. Selenium
 
-6.给hitsz_net.py加可执行权限
->`chmod +x hitsz_net.py`
+4. Firefox 驱动 [geckodriver](https://github.com/mozilla/geckodriver/releases)
 
-7.把hitsz_net.py移动到任一环境变量中的目录，如`/usr/local/bin`
->`sudo mv hitsz_net.py /usr/local/bin`
+## 安装与使用
 
-8.通过以上步骤，就可以通过在命令行输入 `hitsz_net.py` 来登陆校园网络了。
->当然, 可以给Python脚本起一个更容易记忆的名字，如`hitsz_net`
+1. 下载代码
 
-!注：不同的操作系统及浏览器可能有所不同，我的环境是Ubuntu16.04 + Google Chrome 77.0.3865.90, (64-bit)
+    ```
+    git clone https://github.com/lrtfm/hitsz_net.git
+    ```
+
+2. 创建虚拟环境
+
+   ```
+   cd hitsz_net
+   python3 -m venv --copies venv
+   ```
+
+3. 激活环境
+
+   ```
+   source venv/bin/activate
+   ```
+
+4. 安装 Selenium
+
+   ```
+   pip install selenium
+   ```
+
+5. 安装 Firefox 驱动
+
+   a. 下载驱动
+
+      下载地址 https://github.com/mozilla/geckodriver/releases
+
+      请根据浏览器版本选择驱动版本下载 https://firefox-source-docs.mozilla.org/testing/geckodriver/Support.html
+
+   b. 解压后移动文件 `geckodriver` 到文件夹 `venv/bin`
+
+   命令行下载安装示例:
+
+   ```
+   wget https://github.com/mozilla/geckodriver/releases/download/v0.34.0/geckodriver-v0.34.0-linux64.tar.gz
+   tar -zxvf geckodriver-v0.34.0-linux64.tar.gz
+   mv geckodriver venv/bin/
+   ```
+
+6. 运行
+   ```
+   python3 hitsz_net.py
+   ```
